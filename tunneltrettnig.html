@@ -59,6 +59,7 @@
       position: absolute;
       inset: 0; /* deckt die Bühne ab */
       pointer-events: none; /* Overlay soll keine Mausereignisse abfangen */
+      transform-origin: 0 0;
     }
 
     .camera-container {
@@ -107,7 +108,7 @@
     /* ====== Wegweiser / Labels ====== */
     .label {
       position: absolute;
-      font-size: clamp(10px, 1.6vw, 22px);
+      font-size: 18px; /* feste Basisgröße, skaliert dann mit dem Overlay */
       font-weight: 700;
       color: #fff;
       display: flex;
@@ -117,14 +118,16 @@
       white-space: nowrap;
     }
 
+
     .querschlag {
       position: absolute;
-      font-size: clamp(9px, 1.2vw, 15px);
+      font-size: 14px; /* feste Basisgröße */
       font-weight: 700;
       color: #fff;
       transform: rotate(76deg);
       transform-origin: center;
     }
+
 
     /* Hilfsgitter optional einblendbar */
     .grid { display: none; }
@@ -225,58 +228,68 @@
 
   // ====== Responsive Positionierung der Overlays ======
   function positionCameras() {
-    const svg = document.getElementById('tunnelTrettnig');
-    const rect = svg.getBoundingClientRect();
-    const scaleX = rect.width / 1140;
-    const scaleY = rect.height / 700;
     const container = document.getElementById('camera-container');
     container.innerHTML = '';
 
     cameras.forEach(cam => {
       const cameraDiv = document.createElement('div');
       cameraDiv.className = `camera-container camera${cam.type}`;
-      cameraDiv.style.left = `${cam.x * scaleX}px`;
-      cameraDiv.style.top  = `${cam.y * scaleY}px`;
+
+      // native SVG-Koordinaten verwenden (1140 x 700)
+      cameraDiv.style.left = `${cam.x}px`;
+      cameraDiv.style.top  = `${cam.y}px`;
 
       cameraDiv.innerHTML = `
-          <div class="camera">
-            <div class="trapezoid"></div>
-            <div class="camera-number">${cam.number}</div>
-          </div>
-        `;
+        <div class="camera">
+          <div class="trapezoid"></div>
+          <div class="camera-number">${cam.number}</div>
+        </div>
+      `;
       container.appendChild(cameraDiv);
     });
   }
 
+
   function positionLabels() {
+    // Italien links oben (ungefähr 20,130)
+    const italy = document.querySelector('.italy-sign');
+    italy.style.left = `20px`;
+    italy.style.top  = `130px`;
+
+    // Wien rechts unten (ungefähr 1040,383)
+    const wien = document.querySelector('.vienna-sign');
+    wien.style.left = `1040px`;
+    wien.style.top  = `383px`;
+
+    // Querschlag Beschriftung (ungefähr 548,335)
+    const q = document.querySelector('.querschlag');
+    q.style.left = `548px`;
+    q.style.top  = `335px`;
+  }
+
+  function applyOverlayScale() {
     const svg = document.getElementById('tunnelTrettnig');
     const rect = svg.getBoundingClientRect();
     const scaleX = rect.width / 1140;
     const scaleY = rect.height / 700;
 
-    // Italien links oben (ungefähr 20,130)
-    const italy = document.querySelector('.italy-sign');
-    italy.style.left = `${20 * scaleX}px`;
-    italy.style.top  = `${130 * scaleY}px`;
+    const cam = document.getElementById('camera-container');
+    const lab = document.getElementById('label-container');
 
-    // Wien rechts unten (ungefähr 1000,400)
-    const wien = document.querySelector('.vienna-sign');
-    wien.style.left = `${1040 * scaleX}px`;
-    wien.style.top  = `${383 * scaleY}px`;
-
-    // Querschlag Beschriftung (ungefähr 540,320)
-    const q = document.querySelector('.querschlag');
-    q.style.left = `${548 * scaleX}px`;
-    q.style.top  = `${335 * scaleY}px`;
+    cam.style.transform = `scale(${scaleX}, ${scaleY})`;
+    lab.style.transform = `scale(${scaleX}, ${scaleY})`;
   }
+
 
   function onResize() {
     positionCameras();
     positionLabels();
+    applyOverlayScale();
   }
 
   window.addEventListener('load', onResize);
   window.addEventListener('resize', onResize);
+
 </script>
 </body>
 </html>
