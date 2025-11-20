@@ -494,7 +494,6 @@
 
         @media (max-width: 900px){
 
-            /* Layout: alles untereinander im Hero */
             .hero-content{
                 display: flex;
                 flex-direction: column;
@@ -504,23 +503,19 @@
                 gap: 0;
             }
 
-            /* Trick: Diese Wrapper "lösen" wir auf,
-               damit ihre Kinder direkt von .hero-content angeordnet werden können */
             .hero-left,
             .hero-left-inner{
                 display: contents;
             }
 
-            /* 1️⃣ Titel soll als erstes kommen */
             .titleHero{
                 order: 1;
-                margin: 0px 0 18px -20px !important; /* negativen Margin killen */
+                margin: 0px 0 18px -20px !important;
                 text-align: center !important;
                 display: block;
                 font-size: 15vw;
             }
 
-            /* 2️⃣ Bild soll als zweites kommen */
             .hero-right{
                 order: 2;
                 display: flex;
@@ -535,7 +530,6 @@
                 margin: 0 auto 20px;
             }
 
-            /* 3️⃣ Restlicher Text & Kontakt danach */
             .hero-tagline,
             .hero-contact-card{
                 order: 3;
@@ -547,8 +541,8 @@
             }
 
             .spark-orbs{
-                height: 170vw;   /* Orbs bewegen sich nur im oberen Teil */
-                inset: 0 auto auto 0;  /* oben bleiben */
+                height: 0vw;
+                inset: 0 auto auto 0;
             }
         }
 

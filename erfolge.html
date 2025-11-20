@@ -482,12 +482,11 @@
         .award.no-tilt{ transform: translateY(0) !important; }
 
 
-        /* >>> Nur für kleine Fenster / Mobile (Erfolge-Seite) <<< */
         @media (max-width: 900px) {
 
             header.page-hero{
                 text-align: center;
-                padding-top: 5vw;       /* runter von der Ecke, schön mittig */
+                padding-top: 5vw;
             }
 
             .hero-content{
@@ -514,8 +513,6 @@
 
             }
 
-            /* --- Navigations-Section: Filter-Buttons & Suchfeld --- */
-
             .section .toolbar{
                 flex-direction: column;
                 align-items: stretch;
@@ -524,8 +521,8 @@
             }
 
             .toolbar .left{
-                flex-wrap: nowrap;        /* alles in einer Zeile */
-                overflow-x: auto;         /* falls es doch knapp wird, kann man horizontal scrollen */
+                flex-wrap: nowrap;
+                overflow-x: auto;
                 padding-bottom: 4px;
                 gap: 1vw;
 
@@ -533,9 +530,9 @@
             }
 
             .toolbar .pill{
-                padding: 4px 8px;        /* kleiner machen */
-                font-size: 0.68rem;       /* Schrift etwas verkleinern */
-                white-space: nowrap;      /* nichts umbrechen */
+                padding: 4px 8px;
+                font-size: 0.68rem;
+                white-space: nowrap;
                 margin-top: 1vw;
                 margin-left: 1vw;
             }
@@ -553,7 +550,7 @@
             }
 
             .toolbar .search{
-                width: 100%;              /* füllt den ganzen Container */
+                width: 100%;
                 flex: 1 1 100%;
                 font-size: 0.68rem;
             }
@@ -568,23 +565,17 @@
                 font-size: 0.8rem;
             }
 
-
-
-            /* --- Awards: Thumbnails kleiner, 3 auf einmal sichtbar, weniger Abstand --- */
-
             .grid{
                 margin-top: -15vw;
             }
 
-
             .award__media-strip{
                 padding: 8px;
-                scrollbar-width: thin;    /* Scroll-Leiste auf Mobile wieder sichtbarer machen */
+                scrollbar-width: thin;
                 position: relative;
 
             }
 
-            /* Dauerhaft sichtbare „Fake“-Scrollbar unter den Bildern – auf allen Handys */
             .award__media-strip::after{
                 content: "";
                 position: absolute;
@@ -595,10 +586,8 @@
                 border-radius: 999px;
                 background: linear-gradient(90deg, rgba(148,163,184,.7), var(--bg));
                 opacity: .9;
-                pointer-events: none;   /* damit man ganz normal scrollen kann */
+                pointer-events: none;
             }
-
-
 
             .award__media-strip .thumb:last-child{
                 margin-right: 0;
@@ -628,8 +617,6 @@
             }
 
         }
-
-
 
     </style>
 </head>
