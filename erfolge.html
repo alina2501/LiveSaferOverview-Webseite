@@ -480,6 +480,103 @@
         .award__media-strip.dragging{ cursor: grabbing; }
 
         .award.no-tilt{ transform: translateY(0) !important; }
+
+
+        /* >>> Nur für kleine Fenster / Mobile (Erfolge-Seite) <<< */
+        @media (max-width: 900px) {
+
+            /* --- HERO: Überschrift & Stats wie bei projekt.html --- */
+
+            header.page-hero{
+                text-align: center;
+                padding-top: 120px;       /* runter von der Ecke, schön mittig */
+            }
+
+            .hero-content{
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 80px 20px 40px;
+                gap: 24px;
+            }
+
+            .hero-left{
+                margin: 0;
+                text-align: center;
+            }
+
+            .titleHero{
+                margin: 0 0 .6rem 0;      /* riesigen negativen Margin entfernen */
+                font-size: clamp(3.2rem, 10vw, 4.6rem); /* ähnlich kräftig wie auf projekt.html */
+            }
+
+            .stats{
+                justify-content: center;  /* die 3 Punkte schön mittig */
+            }
+
+
+
+            /* --- Navigations-Section: Filter-Buttons & Suchfeld --- */
+
+            .section .toolbar{
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .toolbar .left{
+                justify-content: center;
+                flex-wrap: nowrap;        /* alles in einer Zeile */
+                overflow-x: auto;         /* falls es doch knapp wird, kann man horizontal scrollen */
+                padding-bottom: 4px;
+            }
+
+            .toolbar .pill{
+                padding: 6px 10px;        /* kleiner machen */
+                font-size: 0.78rem;       /* Schrift etwas verkleinern */
+                white-space: nowrap;      /* nichts umbrechen */
+            }
+
+            .toolbar .right{
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .toolbar .search{
+                width: 100%;              /* füllt den ganzen Container */
+                flex: 1 1 100%;
+            }
+
+            .toolbar .select{
+                flex: 0 0 auto;
+            }
+
+            .toolbar .count{
+                margin-left: auto;
+            }
+
+
+
+            /* --- Awards: Thumbnails kleiner, 3 auf einmal sichtbar, weniger Abstand --- */
+
+            .award__media-strip{
+                padding: 8px;
+                scrollbar-width: auto;    /* Scroll-Leiste auf Mobile wieder sichtbarer machen */
+            }
+
+            .award__media-strip .thumb{
+                flex: 0 0 calc(33.333% - 8px); /* 3 Bilder nebeneinander in der Vorschau */
+                margin-right: 8px;             /* Abstand etwas kleiner */
+            }
+
+            .award__media-strip .thumb:last-child{
+                margin-right: 0;
+            }
+        }
+
+
+
     </style>
 </head>
 <body>
